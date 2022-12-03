@@ -1,62 +1,22 @@
-import {
-  BanknotesIcon,
-  BellIcon,
-  CogIcon,
-  KeyIcon,
-  MagnifyingGlassCircleIcon,
-  PhotoIcon,
-  SquaresPlusIcon
-} from '@heroicons/react/24/outline'
+import {useEffect, useState} from 'react'
+import {useRouter} from 'next/router'
+import {SquaresPlusIcon} from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
-const subNavigation = [
+declare type Item = {
+  name: string
+  description: string
+  href: string
+  icon: any
+  current?: boolean
+}
+
+const initialItems: Item[] = [
   {
-    name: 'Account',
-    description: 'Ullamcorper id at suspendisse nec id volutpat vestibulum enim. Interdum blandit.',
-    href: '#',
-    icon: CogIcon,
-    current: true,
-  },
-  {
-    name: 'Notifications',
-    description: 'Enim, nullam mi vel et libero urna lectus enim. Et sed in maecenas tellus.',
-    href: '#',
-    icon: BellIcon,
-    current: false,
-  },
-  {
-    name: 'Security',
-    description: 'Semper accumsan massa vel volutpat massa. Non turpis ut nulla aliquet turpis.',
-    href: '#',
-    icon: KeyIcon,
-    current: false,
-  },
-  {
-    name: 'Appearance',
-    description: 'Magna nulla id sed ornare ipsum eget. Massa eget porttitor suscipit consequat.',
-    href: '#',
-    icon: PhotoIcon,
-    current: false,
-  },
-  {
-    name: 'Billing',
-    description: 'Orci aliquam arcu egestas turpis cursus. Lectus faucibus netus dui auctor mauris.',
-    href: '#',
-    icon: BanknotesIcon,
-    current: false,
-  },
-  {
-    name: 'Integrations',
-    description: 'Nisi, elit volutpat odio urna quis arcu faucibus dui. Mauris adipiscing pellentesque.',
-    href: '#',
+    name: 'UUID Generator',
+    description: 'Tool to generate the Universally Unique Identifier string, supported v1 and v4.',
+    href: '/features/uuid-generator',
     icon: SquaresPlusIcon,
-    current: false,
-  },
-  {
-    name: 'Additional Resources',
-    description: 'Quis viverra netus donec ut auctor fringilla facilisis. Nunc sit donec cursus sit quis et.',
-    href: '#',
-    icon: MagnifyingGlassCircleIcon,
-    current: false,
   },
 ]
 
@@ -65,6 +25,18 @@ function classNames(...classes) {
 }
 
 export const SubNavbar = () => {
+  const router = useRouter()
+
+  const [items, setItems] = useState<Item[]>(initialItems)
+
+  useEffect(() => {
+    for (let item of items) {
+      item.current = router.asPath.startsWith(item.href)
+    }
+
+    setItems([...items])
+  }, [router.asPath])
+
   return (
     <nav
       className="hidden w-96 flex-shrink-0 border-r border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 xl:flex xl:flex-col"
@@ -78,9 +50,9 @@ export const SubNavbar = () => {
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto">
-        {subNavigation.map((item) => (
-          <a
-            key={item.name}
+        {items.map((item) => (
+          <Link
+            key={item.href}
             href={item.href}
             className={classNames(
               item.current
@@ -96,7 +68,7 @@ export const SubNavbar = () => {
               <p className="font-medium text-zinc-900 dark:text-white">{item.name}</p>
               <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{item.description}</p>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </nav>

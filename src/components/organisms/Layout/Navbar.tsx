@@ -1,20 +1,15 @@
 import {useEffect, useState} from 'react'
 import {
-  BookmarkSquareIcon,
-  FireIcon,
   HomeIcon,
-  InboxIcon,
   MoonIcon,
   SunIcon,
   UserIcon
 } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 const navigation = [
-  {name: 'Home', href: '#', icon: HomeIcon},
-  {name: 'Trending', href: '#', icon: FireIcon},
-  {name: 'Bookmarks', href: '#', icon: BookmarkSquareIcon},
-  {name: 'Messages', href: '#', icon: InboxIcon},
-  {name: 'Profile', href: '#', icon: UserIcon},
+  {name: 'Home', href: '/', icon: HomeIcon},
+  {name: 'About', href: 'https://irving.dev', icon: UserIcon, external: true},
 ]
 
 export const Navbar = () => {
@@ -47,14 +42,15 @@ export const Navbar = () => {
 
             <nav aria-label="Sidebar" className="flex flex-col items-center space-y-3 py-6">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className="flex items-center rounded-lg p-4 black dark:white hover:bg-zinc-200 hover:dark:bg-zinc-800"
+                  target={item.external ? '_blank' : ''}
                 >
                   <item.icon className="h-6 w-6" aria-hidden="true"/>
                   <span className="sr-only">{item.name}</span>
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

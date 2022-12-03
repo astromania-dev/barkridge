@@ -19,13 +19,7 @@ export const Layout = ({children}: DefaultLayoutProps) => {
 
                 <div className="flex-1 xl:overflow-y-auto">
                   <div className="mx-auto max-w-3xl py-10 px-4 sm:px-6 lg:py-12 lg:px-8">
-                    <h1 className="text-3xl font-bold tracking-tight text-blue-gray-900">
-                      Account
-                    </h1>
-
-                    <div className="mt-6">
-                      {children}
-                    </div>
+                    {children}
                   </div>
                 </div>
               </div>
