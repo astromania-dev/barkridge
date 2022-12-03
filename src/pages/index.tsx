@@ -1,7 +1,9 @@
-const Page = () => {
+import {Layout} from '../components/organisms/Layout'
+
+export default function Page() {
   return (
-    <p>Hello, world!</p>
+    <Layout>
+      <p>Hello, world!</p>
+    </Layout>
   )
 }
-
-export default Page
