@@ -1,7 +1,9 @@
 import {useState} from 'react'
 import {v1, v4} from 'uuid'
 import {withTypes} from 'react-final-form'
+import Head from 'next/head'
 
+import {pageTitle} from '../../libs/utils'
 import {Layout} from '../../components/organisms/Layout'
 import {Panel} from '../../components/atoms/Panel'
 import {SectionHeader, Select, SelectOption} from '../../components/molecules/Form'
@@ -38,6 +40,10 @@ export default function Page() {
 
   return (
     <Layout>
+      <Head>
+        <title>{pageTitle('UUID Generator')}</title>
+      </Head>
+
       <Panel>
         <Form onSubmit={onSubmit}>
           {({handleSubmit}) => (
