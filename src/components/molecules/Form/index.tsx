@@ -1,3 +1,5 @@
+export {HStack} from './HStack'
+
 export {SectionHeader} from './SectionHeader'
 
 export {Select} from './Select'

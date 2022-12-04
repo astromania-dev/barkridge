@@ -6,7 +6,7 @@ import Head from 'next/head'
 import {pageTitle} from '../../libs/utils'
 import {Layout} from '../../components/organisms/Layout'
 import {Panel} from '../../components/atoms/Panel'
-import {SectionHeader, Select, SelectOption} from '../../components/molecules/Form'
+import {HStack, SectionHeader, Select, SelectOption} from '../../components/molecules/Form'
 import {SubmitButton} from '../../components/molecules/Form/SubmitButton'
 
 declare type FormValues = {
@@ -54,11 +54,13 @@ export default function Page() {
               <div className="space-y-6 sm:space-y-5">
                 <SectionHeader
                   title="UUID Generator"
-                  subtitle="Free developer tool to generate UUID, in both v1 (timestamp) and v4 (random)."
+                  subtitle="Tool to generate the Universally Unique Identifier string, supported v1 and v4."
                 />
 
                 <div className="space-y-6 sm:space-y-5">
-                  <Select label="Version" name="version" options={versions} initialValue="4"/>
+                  <HStack label="Version">
+                    <Select name="version" options={versions} initialValue="4"/>
+                  </HStack>
 
                   <SubmitButton label="Generate"/>
                 </div>
