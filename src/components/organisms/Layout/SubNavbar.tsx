@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
-import {SquaresPlusIcon} from '@heroicons/react/24/outline'
+import {LinkIcon, Squares2X2Icon} from '@heroicons/react/24/outline'
 import Link from 'next/link'
 
 declare type Item = {
@@ -13,10 +13,16 @@ declare type Item = {
 
 const initialItems: Item[] = [
   {
+    name: 'URL Shortener',
+    description: 'Shorten your URLs just like Bitly or TinyURL, with the handy of "irv.sh".',
+    href: '/features/url-shortener',
+    icon: LinkIcon,
+  },
+  {
     name: 'UUID Generator',
     description: 'Tool to generate the Universally Unique Identifier string, supported v1 and v4.',
     href: '/features/uuid-generator',
-    icon: SquaresPlusIcon,
+    icon: Squares2X2Icon,
   },
 ]
 
