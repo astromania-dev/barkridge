@@ -1,0 +1,11 @@
+name: linting
+on: push
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - run: yarn
+      - run: yarn lint
